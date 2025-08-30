@@ -42,6 +42,9 @@ shuffle_seq <- function(seq) {
 # UI
 ui <- fluidPage(
   titlePanel("Protein Sequence Alignment with Needleman-Wunsch"),
+  # Subtitle below the main title
+  tags$p("For BIBMS students – developed by Luis del Peso", 
+         style = "font-style: italic; color: #555;"),
   sidebarLayout(
     sidebarPanel(
       textAreaInput("seq1", "Protein sequence 1:", 
@@ -83,7 +86,7 @@ server <- function(input, output) {
     
     random_scores <- replicate(200, {
       s1 <- shuffle_seq(seq1)
-      s2 <- shuffle_seq(seq1)
+      s2 <- shuffle_seq(seq2)
       score(nw_align(s1, s2))
     })
     
